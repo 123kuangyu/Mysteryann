@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
-project(mysteryann)
 
+project(efanna2e)
+add_subdirectory(thirdparty/DiskANN)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/robin-map/include)
 add_subdirectory(thirdparty/robin-map)
@@ -12,8 +13,6 @@ set(Boost_DIR "/usr/include/boost")
 find_package(Boost COMPONENTS program_options REQUIRED)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 include_directories(${Boost_INCLUDE_DIR})
-find_package(pybind11)
-include_directories(${pybind11_INCLUDE_DIR})
 #OpenMP
 find_package(OpenMP)
 if (OPENMP_FOUND)
@@ -31,4 +30,3 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast -DNDEBUG -march=n
 
 add_subdirectory(src)
 add_subdirectory(tests)
-add_subdirectory(pybindings)
