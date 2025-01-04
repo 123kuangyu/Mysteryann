@@ -34,8 +34,6 @@ class VisitedList {
 /////////////////////////////////////////////////////////
 
 class VisitedListPool {
-#define POOLLIKELY(x) __builtin_expect(x, 1)
-#define POOLUNLIKELY(x) __builtin_expect(x, 0)
     std::deque<VisitedList *> pool;
     std::mutex poolguard;
     int numelements;
@@ -50,7 +48,7 @@ class VisitedListPool {
         VisitedList *rez;
         {
             std::unique_lock<std::mutex> lock(poolguard);
-            if (POOLLIKELY(pool.size() > 0)) {
+            if (pool.size() > 0) {
                 rez = pool.front();
                 pool.pop_front();
             } else {

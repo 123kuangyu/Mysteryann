@@ -1,4 +1,4 @@
 build/
-pybindings/tmp/*
-pybindings/build/*
-
+data/
+test.sh
+test.py
